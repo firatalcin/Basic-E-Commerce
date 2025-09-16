@@ -1,1 +1,13 @@
-<Solution />
+<Solution>
+  <Folder Name="/Core/">
+    <Project Path="Core/ECommerceAPI.Application/ECommerceAPI.Application.csproj" Id="fe64adf4-8116-4ed6-ae4e-4d5e9898331d" />
+    <Project Path="Core/ECommerceAPI.Domain/ECommerceAPI.Domain.csproj" Id="403967bb-9639-4c44-bc5f-713f7dc5ca6e" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/ECommerceAPI.Infrastructure/ECommerceAPI.Infrastructure.csproj" Id="9eba0391-67f2-4c9c-ae6f-785e04ba5c40" />
+    <Project Path="Infrastructure/ECommerceAPI.Persistence/ECommerceAPI.Persistence.csproj" Id="289d9105-23c3-4870-925e-deb67da10254" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="Presentation/ECommerceAPI.API/ECommerceAPI.API.csproj" Id="790ec11e-44de-4379-b630-667c33628fa1" />
+  </Folder>
+</Solution>
