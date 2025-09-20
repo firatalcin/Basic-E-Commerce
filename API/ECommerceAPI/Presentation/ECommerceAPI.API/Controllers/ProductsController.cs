@@ -1,5 +1,4 @@
-﻿using ECommerceAPI.Application.Abstractions;
-using Microsoft.AspNetCore.Http;
+﻿using ECommerceAPI.Application.Repositories.Product;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceAPI.API.Controllers
@@ -8,17 +7,27 @@ namespace ECommerceAPI.API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IProductReadRepository _productReadRepository;
+        private readonly IProductWriteRepository _productWriteRepository;
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository)
         {
-            _productService = productService;
+            _productReadRepository = productReadRepository;
+            _productWriteRepository = productWriteRepository;
         }
 
         [HttpGet]
-        public IActionResult GetProducts()
+        public async Task<IActionResult> Get()
         {
-            return Ok(_productService.GetProducts());
+            await _productWriteRepository.AddRangeAsync(new()
+            {
+                new() { Id = Guid.NewGuid(), Name = "Product 1", Price= 100, CreatedDate= DateTime.UtcNow, Stock = 10},
+                new() { Id = Guid.NewGuid(), Name = "Product 2", Price= 200, CreatedDate= DateTime.UtcNow, Stock = 20},
+                new() { Id = Guid.NewGuid(), Name = "Product 3", Price= 300, CreatedDate= DateTime.UtcNow, Stock = 30}
+            });
+
+            await _productWriteRepository.SaveAsync();
+            return Ok();
         }
     }
 }
