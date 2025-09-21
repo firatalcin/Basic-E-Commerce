@@ -17,7 +17,7 @@ namespace ECommerceAPI.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task Get()
         {
             await _productWriteRepository.AddRangeAsync(new()
             {
@@ -27,7 +27,13 @@ namespace ECommerceAPI.API.Controllers
             });
 
             await _productWriteRepository.SaveAsync();
-            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            var product = await _productReadRepository.GetByIdAsync(id);
+            return Ok(product);
         }
     }
 }
