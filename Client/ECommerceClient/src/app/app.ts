@@ -13,10 +13,8 @@ export class App {
   protected readonly title = signal('ECommerceClient');
 
   constructor(private toastr: CustomToastr){
-    toastr.message("Merhaba", "Firat", {messageType: ToastrMessageType.Success, position: ToastrPosition.TopLeft});
+   
   }
 }
 
-$(document).ready(() => {
-  alert("asd")
-})
+$.get("https://localhost:7131/api/products")
